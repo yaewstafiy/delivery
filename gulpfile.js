@@ -5,19 +5,19 @@ const rename = require('gulp-rename');
 const concat = require('gulp-concat');
 const autoprefixer = require('gulp-autoprefixer');
 const uglify = require('gulp-uglify');
-const browserSync = require('browser-sync').create();
+// const browserSync = require('browser-sync').create();
 const imagemin = require('gulp-imagemin');
 const del = require('del');
 
 
-function browsersync() {
-  browserSync.init({
-    server: {
-      baseDir: 'app'
-    },
-    notify: false
-  })
-}
+// function browsersync() {
+//   browserSync.init({
+//     server: {
+//       baseDir: 'app'
+//     },
+//     notify: false
+//   })
+// }
 
 function images() {
   return src('app/images/**/*.*')
@@ -44,13 +44,13 @@ function styles() {
       grid: true,
     }))
     .pipe(dest('app/css'))
-    .pipe(browserSync.stream())
+    // .pipe(browserSync.stream())
 }
 
 function watching() {
   watch(['app/scss/**/*.scss'], styles);
   watch(['app/js/**/*.js', '!app/js/main.min.js'], scripts)
-  watch(['app/**/*.html']).on('change', browserSync.reload)
+  // watch(['app/**/*.html']).on('change', browserSync.reload)
 }
 
 function scripts() {
@@ -60,7 +60,7 @@ function scripts() {
     .pipe(concat('main.min.js'))
     .pipe(uglify())
     .pipe(dest('app/js'))
-    .pipe(browserSync.stream())
+    // .pipe(browserSync.stream())
 }
 
 function build() {
@@ -77,7 +77,7 @@ function cleanDist() {
 }
 
 
-exports.browsersync = browsersync;
+// exports.browsersync = browsersync;
 exports.scripts = scripts;
 exports.styles = styles;
 exports.watching = watching;
@@ -85,4 +85,6 @@ exports.images = images;
 exports.cleanDist = cleanDist;
 
 exports.build = series(cleanDist, images, build);
-exports.default = parallel(styles, scripts, browsersync, watching);
+
+// exports.default = parallel(styles, scripts, browsersync, watching);
+exports.default = parallel(styles, scripts, watching);

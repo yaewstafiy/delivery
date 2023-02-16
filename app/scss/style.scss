@@ -329,6 +329,32 @@
   &__text {
     max-width: 500px
   }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin-top: 25px;
+  }
+
+  &__label {
+    margin: 0 0 10px 0;
+  }
+
+  &__input {
+    display: block;
+    border-radius: 10px;
+    border: none;
+    padding: 10px 20px 10px 10px;
+
+    &+& {
+      margin-top: 10px;
+    }
+  }
+
+  &__btn {
+    margin-top: 10px;
+  }
 }
 
 .timer {
@@ -356,11 +382,98 @@
       margin-left: 20px;
     }
   }
+}
 
+.calc {
+  text-align: center;
+  margin: 50px 0;
+  padding: 50px 0;
+  background-color: $accent;
+  color: $white;
+
+  &__inner {
+    background-color: $accent-two;
+    border-radius: 10px;
+    padding: 50px;
+  }
+
+  &__header-title {
+    margin-bottom: 50px;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    margin: 15px 0;
+  }
+
+  &__gender {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__gender,
+  &__physical {
+    gap: 10px;
+  }
+
+  &__choose-item {
+    transition: all .3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 50px;
+    background-color: $white;
+    color: #6644b9;
+    border-radius: 10px;
+    border: none;
+    padding: 0 10px;
+    cursor: pointer;
+    text-align: center;
+
+    &::placeholder {
+      color: #6644b9;
+      text-align: center;
+    }
+  }
+
+  &__choose-item--active {
+    background-color: $accent;
+    color: $white;
+  }
+
+  &__constitution {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__physical {
+    display: flex;
+    justify-content: center;
+  }
+
+  
+
+  &__total {
+    padding-top: 20px;
+    margin: 0 auto;
+    max-width: 630px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+
+    &-title {}
+
+    &-result span {
+      font-weight: 700;
+      font-size: 24px;
+    }
+  }
 }
 
 .footer {
-  margin-top: 50px;
   padding: 20px 0;
   background-color: $accent;
 
@@ -448,7 +561,7 @@
       align-self: center;
       text-align: right;
       padding-right: 40px;
-      
+
       .client {
         font-weight: 400;
         font-size: 18px;

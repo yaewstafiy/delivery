@@ -49,6 +49,7 @@ window.addEventListener('DOMContentLoaded', () => {
     pagination: {
       el: '.swiper-pagination',
       type: 'bullets',
+      clickable: true,
     },
     keyboard: {
       enabled: true,
@@ -108,39 +109,47 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  new MenuCard(
-    'images/menu/1.jpg',
-    'item',
-    'Menu "Fitness"',
-    'Menu "Fitness" is a new approach to cooking: more fresh vegetables and fruits. Product of active and healthy people. This is a brand new product with the best price and high quality!',
-    20
-  ).render();
+  const getResource = async (url) => {
+    const res = await fetch(url);
 
-  new MenuCard(
-    'images/menu/2.jpg',
-    'item',
-    'Menu "Lenten"',
-    'The "Lenten" menu is a careful selection of ingredients: the complete absence of animal products, milk from almonds, oats, coconut or buckwheat, the right amount of protein from tofu and imported vegetarian steaks.',
-    20
-  ).render();
+    if (!res.ok) {
+      throw new Error(`Couldn't fetch ${url}, status: ${res.status}`);
+    }
 
-  new MenuCard(
-    'images/menu/3.jpg',
-    'item',
-    'Menu "Premium"',
-    'In the "Premium" menu, we use not only beautiful packaging design, but also high-quality execution of dishes. Red fish, seafood, fruits - a restaurant menu without going to a restaurant!',
-    20
-  ).render();
+    return await res.json();
+  };
 
-  new MenuCard(
-    'images/menu/1.jpg',
-    'item',
-    'Menu "Fitness"',
-    'Menu "Fitness" is a new approach to cooking: more fresh vegetables and fruits. Product of active and healthy people. This is a brand new product with the best price and high quality!',
-    20
-  ).render();
+  getResource('http://localhost:3000/menu')
+    .then(data => {
+      data.forEach(({ img, altimg, title, descr, price }) => {
+        new MenuCard(img, altimg, title, descr, price).render();
+      })
+    });
 
+  // .then(data => createCard(data));
+  // });
 
+  // function createCard({img, altimg, title, descr, price}) {
+  //   const element = document.createElement('div');
+  //   element.classList.add('menu__item');
+  //   price = price * 70;
+
+  //   element.innerHTML = `
+  //     <img src="${img}" alt="${altimg}">
+  //     <h3 class="menu__item-title">${title}</h3>
+  //     <div class="menu__item-text">${descr}</div>
+  //     <div class="menu__item-price">
+  //       <div class="menu__item-cost">
+  //         Cost:
+  //       </div>
+  //       <a class="menu__item-total" href="#">
+  //         <span>${price}</span> USD/day
+  //       </a>
+  //     </div>
+  //   `
+
+  //   document.querySelector('.menu .menu__inner').append(element);
+  // }
 
   // Modal Window
 
@@ -165,12 +174,12 @@ window.addEventListener('DOMContentLoaded', () => {
     setTimeout(openModal, time);
   }
 
-  function showModalByScroll() {
-    if ((window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight) && !(modalWindow.classList.contains('been-opened'))) {
-      openModalWithTimeOut(0);
-      window.removeEventListener('scroll', showModalByScroll);
-    }
-  }
+  // function showModalByScroll() {
+  //   if ((window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight) && !(modalWindow.classList.contains('been-opened'))) {
+  //     openModalWithTimeOut(0);
+  //     window.removeEventListener('scroll', showModalByScroll);
+  //   }
+  // }
 
   modalButton.addEventListener('click', openModal);
 
@@ -186,9 +195,9 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  const modalTimerId = setTimeout(openModal, 10_000); // открывает модальное окно по истечению 10 секунд (10.000 миллисекунд)
+  // const modalTimerId = setTimeout(openModal, 10_000); // открывает модальное окно по истечению 10 секунд (10.000 миллисекунд)
 
-  window.addEventListener('scroll', showModalByScroll);
+  // window.addEventListener('scroll', showModalByScroll);
 
 
 
@@ -263,6 +272,32 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const forms = document.querySelectorAll('form');
 
+  forms.forEach(item => {
+    item.addEventListener('change', () => {
+      const inputNames = document.querySelectorAll('input[name="name"]');
+      const inputPhones = document.querySelectorAll('input[name="phone"]');
+
+      inputNames.forEach(item => {
+        localStorage.setItem('name', item.value);
+      });
+      inputPhones.forEach(item => {
+        localStorage.setItem('phone', item.value);
+      });
+    });
+  })
+
+  window.addEventListener('load', () => {
+    const inputNames = document.querySelectorAll('input[name="name"]');
+    const inputPhones = document.querySelectorAll('input[name="phone"]');
+
+    inputNames.forEach(item => {
+      item.value = localStorage.getItem('name') || '';
+    })
+    inputPhones.forEach(item => {
+      item.value = localStorage.getItem('phone') || '';
+    })
+  });
+
   const message = {
     loading: 'images/form/spin-onload.svg',
     success: 'Thanks! <br> We will contact you soon',
@@ -270,10 +305,21 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   forms.forEach(item => {
-    postData(item);
+    bindPostData(item);
   })
 
-  function postData (form) {
+  const postData = async (url, data) => {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: data
+    });
+    return await res.json();
+  }
+
+  function bindPostData(form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 
@@ -283,41 +329,32 @@ window.addEventListener('DOMContentLoaded', () => {
         display: block;
         margin: 15px auto 0;
       `;
-      document.querySelector('.modal__content').style.paddingBottom = '20px';
+      // document.querySelector('.modal__content').style.paddingBottom = '20px';
       form.insertAdjacentElement('afterend', statusMessage);
 
-      const request = new XMLHttpRequest();
-      request.open('POST', 'server.php');
-
-      request.setRequestHeader('Content-type', 'application/json');
       const formData = new FormData(form);
 
-      const object = {};
-      formData.forEach(function(value, key) {
-        object[key] = value;
-      })
+      const json = JSON.stringify(Object.fromEntries(formData.entries()));
 
-      const json = JSON.stringify(object);
-
-      request.send(json);
-
-      request.addEventListener('load', () => {
-        if (request.status === 200) {
-          console.log(request.response);
+      postData('http://localhost:3000/requests', json)
+        .then(data => {
+          console.log(data);
           showThanksModal(message.success);
-          form.reset();
           statusMessage.remove();
-        } else {
+        })
+        .catch(() => {
           showThanksModal(message.failure);
-        }
-      });
-
+        })
+        .finally(() => {
+          form.reset();
+        })
     });
   }
 
   function showThanksModal(message) {
     const prevModalDialog = document.querySelector('.modal__dialog');
     prevModalDialog.classList.add('hide');
+    prevModalDialog.classList.remove('show');
     openModal();
 
     const thanksModal = document.createElement('div');
@@ -332,13 +369,84 @@ window.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.modal').append(thanksModal);
     setTimeout(() => {
       thanksModal.remove();
-      prevModalDialog.classList.add('show-modal');
+      prevModalDialog.classList.add('show');
       prevModalDialog.classList.remove('hide');
       closeModal();
-      document.querySelector('.modal__content').style.paddingBottom = '40px';
+      // document.querySelector('.modal__content').style.paddingBottom = '40px';
     }, 4000)
   }
 
 
+  // Calculator 
 
+  const result = document.querySelector('.calc__total-result span');
+  let sex = 'male',
+    height,
+    weight,
+    age,
+    ratio = 1.375;
+
+  function calcTotal() {
+    if (!sex || !height || !weight || !age || !ratio) {
+      result.textContent = 'Fill in all items';
+      return;
+    }
+
+    if (sex === 'female') {
+      result.textContent = Math.round((447.6 + (9.2 * weight) + (3.1 * height) - (4.3 * age)) * ratio);
+    } else {
+      result.textContent = Math.round((88.36 + (13.4 * weight) + (4.8 * height) - (5.7 * age)) * ratio);
+    }
+  }
+
+  function getStaticInformation(parentSelector, activeClass) {
+    const elements = document.querySelectorAll(`${parentSelector} div`);
+
+    elements.forEach(item => {
+      item.addEventListener('click', (e) => {
+        if (e.target.getAttribute('data-ratio')) {
+          ratio = +e.target.getAttribute('data-ratio');
+        } else {
+          sex = e.target.getAttribute('id');
+        }
+
+        elements.forEach(elem => {
+          elem.classList.remove(activeClass);
+        });
+
+        e.target.classList.add(activeClass)
+
+        calcTotal();
+      });
+
+    })
+
+
+  }
+
+  getStaticInformation('#gender', 'calc__choose-item--active');
+  getStaticInformation('.calc__physical', 'calc__choose-item--active');
+
+  function getDynamicInformation(selector) {
+    const input = document.querySelector(selector);
+
+    input.addEventListener('input', () => {
+      switch (input.getAttribute('id')) {
+        case 'height':
+          height = +input.value;
+          break;
+        case 'weight':
+          weight = +input.value;
+          break;
+        case 'age':
+          age = +input.value;
+          break;
+      }
+      calcTotal();
+    });
+  }
+
+  getDynamicInformation('#height');
+  getDynamicInformation('#weight');
+  getDynamicInformation('#age');
 });

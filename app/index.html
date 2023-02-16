@@ -18,7 +18,7 @@
         <div class="header__inner">
           <div class="header__content">
             <a class="header__logo" href="index.html">
-              <img src="images/logo.svg" alt="">
+              <img src="images/logo.svg" alt="logo">
             </a>
             <form class="header__search">
               <div class="search-block">
@@ -28,9 +28,6 @@
                     d="M15.2782 16.6128L19.681 21.0578C20.1092 21.4902 20.1059 22.188 19.6735 22.6162C19.2411 23.0445 18.5434 23.0412 18.1151 22.6088L13.3946 17.843C12.1629 18.4489 10.7788 18.789 9.31554 18.789C4.16833 18.789 0 14.5806 0 9.39451C0 4.20841 4.16833 0 9.31554 0C9.92415 0 10.4175 0.493375 10.4175 1.10198C10.4175 1.71059 9.92415 2.20397 9.31554 2.20397C5.3903 2.20397 2.20397 5.42094 2.20397 9.39451C2.20397 13.3681 5.3903 16.5851 9.31554 16.5851C13.2408 16.5851 16.4271 13.3681 16.4271 9.39451C16.4271 7.24195 15.4876 5.24732 13.8899 3.88865C13.4262 3.49439 13.37 2.79892 13.7643 2.33528C14.1585 1.87165 14.854 1.81541 15.3177 2.20968C17.4035 3.98342 18.6311 6.58969 18.6311 9.39451C18.6311 12.2947 17.3275 14.8891 15.2782 16.6128Z">
                   </path>
                 </svg>
-
-
-                <!-- <button>×</button> -->
               </div>
             </form>
 
@@ -108,7 +105,10 @@
             <div class="offer__suggest">
               <h1 class="offer__title title">What can we offer you?</h1>
               <p class="offer__text text">
-                Our main idea is proper nutrition. It can be simple and delicious. We are not just a delivery, we are a service! We took care of all the calculations of BJU, calories, portion sizes and other important but boring aspects. All you have left is healthy, satisfying and proper food, which we bring right to your door.
+                Our main idea is proper nutrition. It can be simple and delicious. We are not just a delivery, we are a
+                service! We took care of all the calculations of BJU, calories, portion sizes and other important but
+                boring aspects. All you have left is healthy, satisfying and proper food, which we bring right to your
+                door.
               </p>
             </div>
 
@@ -125,7 +125,9 @@
                         Quick and tasty!
                       </h2>
                       <div class="slider__descr">
-                        Cooking at home takes a lot of effort, time and nerves. We bring food for the whole day at once, and you can act as you like, without adjusting to anyone and being confident in the quality of the product!
+                        Cooking at home takes a lot of effort, time and nerves. We bring food for the whole day at once,
+                        and you can act as you like, without adjusting to anyone and being confident in the quality of
+                        the product!
                       </div>
                     </div>
                   </div>
@@ -140,7 +142,9 @@
                         Quick and tasty!
                       </h2>
                       <div class="slider__descr">
-                        Cooking at home takes a lot of effort, time and nerves. We bring food for the whole day at once, and you can act as you like, without adjusting to anyone and being confident in the quality of the product!
+                        Cooking at home takes a lot of effort, time and nerves. We bring food for the whole day at once,
+                        and you can act as you like, without adjusting to anyone and being confident in the quality of
+                        the product!
                       </div>
                     </div>
                   </div>
@@ -155,7 +159,9 @@
                         Quick and tasty!
                       </h2>
                       <div class="slider__descr">
-                        Cooking at home takes a lot of effort, time and nerves. We bring food for the whole day at once, and you can act as you like, without adjusting to anyone and being confident in the quality of the product!
+                        Cooking at home takes a lot of effort, time and nerves. We bring food for the whole day at once,
+                        and you can act as you like, without adjusting to anyone and being confident in the quality of
+                        the product!
                       </div>
                     </div>
                   </div>
@@ -194,6 +200,12 @@
                 repellendus aspernatur? <br>
                 Offer will end 30 June 2023.
               </div>
+              <form class="promotion__form" action="#">
+                <h2 class="promotion__label" for="">Leave your contacts: </h2>
+                <input class="promotion__input" type="text" name="name" required placeholder="Your name">
+                <input class="promotion__input" type="tel" name="phone" required placeholder="Your phone">
+                <button class="promotion__btn" type="submit">Contact me!</button>
+              </form>
             </div>
             <div class="promotion__timer">
               <div class="timer">
@@ -219,6 +231,41 @@
         </div>
       </section>
 
+      <section class="calc">
+        <div class="container">
+          <h1 class="calc__header-title">Let's calculate you?</h1>
+          <div class="calc__inner">
+            <h3 class="calc__gender-title calc__title">Your gender</h3>
+            <div class="calc__gender" id="gender">
+              <div class="calc__choose-item calc__choose-item--active" id="male">Male</div>
+              <div class="calc__choose-item" id="female">Female</div>
+            </div>
+
+            <h3 class="calc__constitution-title calc__title">Your constitution</h3>
+            <div class="calc__constitution">
+              <input class="calc__choose-item" type="text" placeholder="Enter your height" id="height">
+              <input class="calc__choose-item" type="text" placeholder="Enter your weight" id="weight">
+              <input class="calc__choose-item" type="text" placeholder="Enter your age" id="age">
+            </div>
+
+            <h3 class="calc__physical-title calc__title">Choose your physical activity</h3>
+            <div class="calc__physical">
+              <div class="calc__choose-item" id="low" data-ratio="1.2">Low activity</div>
+              <div class="calc__choose-item calc__choose-item--active" id="small" data-ratio="1.375">Small activity</div>
+              <div class="calc__choose-item" id="medium" data-ratio="1.55">Medium activity</div>
+              <div class="calc__choose-item" id="high" data-ratio="1.725">High activity</div>
+            </div>
+
+            <div class="calc__total">
+              <h3 class="calc__total-title">Your daily calorie intake:</h3>
+              <div class="calc__total-result">
+                <span>2700</span> kcal
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
 
     </main>
 
@@ -228,8 +275,14 @@
           <form action="#">
             <div class="modal__close" data-modal-close>×</div>
             <div class="modal__title">We will contact you!</div>
-            <input class="modal__input" required placeholder="Your name" name="name" type="text">
-            <input class="modal__input" required placeholder="Your phone number" name="phone" type="tel">
+            <div class="modal__input-box">
+              <input class="modal__input" required name="name" type="text">
+              <label>Your name</label>
+            </div>
+            <div class="modal__input-box">  
+              <input class="modal__input" required name="phone" type="tel">
+              <label>Your phone</label>
+            </div>
             <button class="modal__btn">Call me back</button>
           </form>
         </div>
@@ -272,7 +325,6 @@
 
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-
   <script src="js/main.min.js"></script>
 </body>
 
