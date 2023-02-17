@@ -175,6 +175,10 @@
       margin: 30px auto 0;
     }
   }
+
+  .menu__inner {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 700px) {
@@ -215,6 +219,10 @@
   .nav-modal__btn {
     padding: 0;
     border: none;
+  }
+
+  .menu__inner {
+    grid-template-columns: 1fr;
   }
 }
 

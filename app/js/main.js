@@ -109,22 +109,55 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  const getResource = async (url) => {
-    const res = await fetch(url);
+  new MenuCard(
+    "images/menu/1.jpg",
+    "vegy",
+    "Menu 'Fitness'",
+    "Menu 'Fitness' is a new approach to cooking: more fresh vegetables and fruits. Product of active and healthy people. This is a brand new product with the best price and high quality!",
+    10
+  ).render();
 
-    if (!res.ok) {
-      throw new Error(`Couldn't fetch ${url}, status: ${res.status}`);
-    }
+  new MenuCard(
+    "images/menu/2.jpg",
+    "post",
+    "Menu 'Lenten'",
+    "The 'Lenten' menu is a careful selection of ingredients: the complete absence of animal products, milk from almonds, oats, coconut or buckwheat, the right amount of protein from tofu and imported vegetarian steaks.",
+    14
+  ).render();
 
-    return await res.json();
-  };
+  new MenuCard(
+    "images/menu/3.jpg",
+    "elite",
+    "Menu 'Premium'",
+    "In the 'Premium' menu, we use not only beautiful packaging design, but also high-quality execution of dishes. Red fish, seafood, fruits - a restaurant menu without going to a restaurant!",
+    20
+  ).render();
 
-  getResource('http://localhost:3000/menu')
-    .then(data => {
-      data.forEach(({ img, altimg, title, descr, price }) => {
-        new MenuCard(img, altimg, title, descr, price).render();
-      })
-    });
+  // {
+  //   "img": "images/menu/1.jpg",
+  //   "altimg": "vegy",
+  //   "title": "Menu 'Fitness'",
+  //   "descr": "Menu 'Fitness' is a new approach to cooking: more fresh vegetables and fruits. Product of active and healthy people. This is a brand new product with the best price and high quality!",
+  //   "price": 10
+  // },
+
+
+  // const getResource = async (url) => {
+  //   const res = await fetch(url);
+
+  //   if (!res.ok) {
+  //     throw new Error(`Couldn't fetch ${url}, status: ${res.status}`);
+  //   }
+
+  //   return await res.json();
+  // };
+
+  // getResource('http://localhost:3000/menu')
+  //   .then(data => {
+  //     data.forEach(({ img, altimg, title, descr, price }) => {
+  //       new MenuCard(img, altimg, title, descr, price).render();
+  //     })
+  //   });
 
   // Modal Window
 
