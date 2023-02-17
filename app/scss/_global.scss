@@ -26,6 +26,16 @@ body {
   margin: 0 auto;
 }
 
+.search-block {
+  .show-input {
+    transform: scaleX(1) translateX(0) !important;
+  }
+
+  .show-input~svg path {
+    fill: rgba(0, 0, 0, .5) !important;
+  }
+}
+
 .show {
   display: block;
 }
@@ -33,6 +43,10 @@ body {
 .show-modal {
   display: flex !important;
   align-items: center;
+}
+
+.show-menu {
+  display: block !important;
 }
 
 .hide {
@@ -75,7 +89,7 @@ body::-webkit-scrollbar-thumb {
   /* padding вокруг плашки */
 }
 
-button {
+.button {
   background-color: $accent-two;
   border: none;
   color: $white;
@@ -189,4 +203,24 @@ button {
     margin: 0 auto;
     width: 100%;
   }
+}
+
+// burger 
+
+.nav-modal__container {
+  display: none;
+}
+
+.nav-modal__btn {
+  cursor: pointer;
+}
+
+.show-nav-modal {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.burger-menu {
+  display: none;
 }

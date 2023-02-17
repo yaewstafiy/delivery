@@ -57,7 +57,7 @@ window.addEventListener('DOMContentLoaded', () => {
     },
     autoplay: {
       delay: 5000,
-    }
+    },
   });
 
   // Menu cards
@@ -126,31 +126,6 @@ window.addEventListener('DOMContentLoaded', () => {
       })
     });
 
-  // .then(data => createCard(data));
-  // });
-
-  // function createCard({img, altimg, title, descr, price}) {
-  //   const element = document.createElement('div');
-  //   element.classList.add('menu__item');
-  //   price = price * 70;
-
-  //   element.innerHTML = `
-  //     <img src="${img}" alt="${altimg}">
-  //     <h3 class="menu__item-title">${title}</h3>
-  //     <div class="menu__item-text">${descr}</div>
-  //     <div class="menu__item-price">
-  //       <div class="menu__item-cost">
-  //         Cost:
-  //       </div>
-  //       <a class="menu__item-total" href="#">
-  //         <span>${price}</span> USD/day
-  //       </a>
-  //     </div>
-  //   `
-
-  //   document.querySelector('.menu .menu__inner').append(element);
-  // }
-
   // Modal Window
 
   const modalWindow = document.querySelector('.modal'),
@@ -167,19 +142,19 @@ window.addEventListener('DOMContentLoaded', () => {
     modalWindow.classList.add('show-modal');
     modalWindow.classList.add('been-opened'); // добавляет класс, символизирующий, что модальное окно уже было открыто 1 раз
     document.body.style.overflow = 'hidden';
-    clearInterval(modalTimerId); // удаляется setTimeOut у появления модального окна
+    // clearInterval(modalTimerId); // удаляется setTimeOut у появления модального окна
   }
 
   function openModalWithTimeOut(time) {
     setTimeout(openModal, time);
   }
 
-  // function showModalByScroll() {
-  //   if ((window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight) && !(modalWindow.classList.contains('been-opened'))) {
-  //     openModalWithTimeOut(0);
-  //     window.removeEventListener('scroll', showModalByScroll);
-  //   }
-  // }
+  function showModalByScroll() {
+    if ((window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight) && !(modalWindow.classList.contains('been-opened'))) {
+      openModalWithTimeOut(0);
+      window.removeEventListener('scroll', showModalByScroll);
+    }
+  }
 
   modalButton.addEventListener('click', openModal);
 
@@ -197,7 +172,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // const modalTimerId = setTimeout(openModal, 10_000); // открывает модальное окно по истечению 10 секунд (10.000 миллисекунд)
 
-  // window.addEventListener('scroll', showModalByScroll);
+  window.addEventListener('scroll', showModalByScroll);
 
 
 
@@ -449,4 +424,35 @@ window.addEventListener('DOMContentLoaded', () => {
   getDynamicInformation('#height');
   getDynamicInformation('#weight');
   getDynamicInformation('#age');
+
+
+  // Other things
+  const navModal = document.querySelector('.nav-modal'),
+    navModalList = document.querySelector('.nav-modal__container'),
+    burgerButton = document.querySelector('.burger-menu');
+
+  function closeNavModal() {
+    navModalList.classList.add('hide');
+    navModalList.classList.remove('show-nav-modal');
+    document.body.style.overflow = '';
+  }
+
+  function openNavModal() {
+    navModalList.classList.add('show-nav-modal');
+    navModalList.classList.remove('hide');
+    document.body.style.overflow = 'hidden';
+  }
+
+  document.querySelector('.search-block svg').addEventListener('click', () => {
+    document.querySelector('.search-block__input').classList.add('show-input');
+  });
+
+  burgerButton.addEventListener('click', openNavModal);
+
+  navModalList.addEventListener('click', (e) => {
+    if (e.target === navModalList || e.target.getAttribute('data-burger-close')) {
+      closeNavModal();
+    }
+  })
+
 });

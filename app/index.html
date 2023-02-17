@@ -22,7 +22,7 @@
             </a>
             <form class="header__search">
               <div class="search-block">
-                <input class="search__input" type="text" placeholder="Search">
+                <input class="search-block__input" type="text" placeholder="Search">
                 <svg width="20" height="23" viewBox="0 0 20 23">
                   <path fill-rule="evenodd" clip-rule="evenodd"
                     d="M15.2782 16.6128L19.681 21.0578C20.1092 21.4902 20.1059 22.188 19.6735 22.6162C19.2411 23.0445 18.5434 23.0412 18.1151 22.6088L13.3946 17.843C12.1629 18.4489 10.7788 18.789 9.31554 18.789C4.16833 18.789 0 14.5806 0 9.39451C0 4.20841 4.16833 0 9.31554 0C9.92415 0 10.4175 0.493375 10.4175 1.10198C10.4175 1.71059 9.92415 2.20397 9.31554 2.20397C5.3903 2.20397 2.20397 5.42094 2.20397 9.39451C2.20397 13.3681 5.3903 16.5851 9.31554 16.5851C13.2408 16.5851 16.4271 13.3681 16.4271 9.39451C16.4271 7.24195 15.4876 5.24732 13.8899 3.88865C13.4262 3.49439 13.37 2.79892 13.7643 2.33528C14.1585 1.87165 14.854 1.81541 15.3177 2.20968C17.4035 3.98342 18.6311 6.58969 18.6311 9.39451C18.6311 12.2947 17.3275 14.8891 15.2782 16.6128Z">
@@ -30,6 +30,34 @@
                 </svg>
               </div>
             </form>
+
+            <div class="nav-modal">
+              <button class="burger-menu">
+                <span></span>
+              </button>
+              <div class="nav-modal__container hide">
+                <div class="nav-modal__dialog">
+                  <button class="nav-modal__btn" data-burger-close>×</button>
+                  <ul class="nav-modal__list">
+                    <li class="nav-modal__list-item">
+                      <a class="nav-modal__list-link" href="#">
+                        Delivery
+                      </a>
+                    </li>
+                    <li class="nav-modal__list-item">
+                      <a class="nav-modal__list-link" href="#">
+                        Our Suggestions
+                      </a>
+                    </li>
+                    <li class="nav-modal__list-item">
+                      <a class="nav-modal__list-link" href="#">
+                        Our Menu
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
 
             <nav class="header__nav">
               <ul class="header__nav-list">
@@ -47,7 +75,16 @@
           </div>
 
           <div class="contact" data-modal>
-            <button class="contact__btn">Contact us!</button>
+            <button class="contact__btn button">Contact us!</button>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 30 30" version="1.1">
+              <g>
+                <path
+                  d="M 10.511719 4.925781 C 9.671875 4.308594 9.105469 4.167969 8.804688 4.226562 C 7.550781 4.472656 6.808594 4.957031 5.804688 5.964844 C 4.433594 7.335938 3.765625 8.359375 4.054688 9.914062 C 4.390625 11.703125 6.019531 14.429688 10.515625 18.925781 C 15.011719 23.421875 17.757812 25.070312 19.554688 25.410156 C 20.386719 25.566406 21.023438 25.445312 21.59375 25.164062 C 22.203125 24.863281 22.789062 24.359375 23.460938 23.65625 C 24.054688 23.035156 24.417969 22.601562 24.671875 22.171875 C 24.914062 21.765625 25.082031 21.316406 25.214844 20.640625 C 25.273438 20.335938 25.136719 19.769531 24.515625 18.929688 C 23.9375 18.148438 23.125 17.371094 22.371094 16.734375 C 21.875 16.316406 21.105469 16.289062 20.484375 16.753906 L 18.585938 18.175781 C 16.875 19.457031 14.484375 19.273438 12.972656 17.761719 L 11.679688 16.46875 C 10.167969 14.960938 9.984375 12.566406 11.265625 10.855469 L 12.6875 8.957031 C 13.152344 8.335938 13.125 7.566406 12.707031 7.070312 C 12.070312 6.316406 11.292969 5.503906 10.511719 4.925781 Z M 11.996094 2.914062 C 13.007812 3.660156 13.929688 4.644531 14.617188 5.460938 C 15.871094 6.945312 15.769531 9.011719 14.6875 10.457031 L 13.269531 12.351562 C 12.738281 13.058594 12.808594 14.0625 13.445312 14.703125 L 14.742188 15.996094 C 15.378906 16.636719 16.382812 16.703125 17.089844 16.175781 L 18.988281 14.753906 C 20.429688 13.671875 22.496094 13.570312 23.984375 14.824219 C 24.800781 15.511719 25.78125 16.4375 26.527344 17.449219 C 27.234375 18.402344 27.941406 19.726562 27.667969 21.117188 C 27.496094 22.011719 27.238281 22.746094 26.824219 23.449219 C 26.417969 24.128906 25.894531 24.730469 25.265625 25.386719 C 24.535156 26.148438 23.707031 26.910156 22.695312 27.40625 C 21.648438 27.921875 20.464844 28.125 19.089844 27.867188 C 16.472656 27.371094 13.253906 25.199219 8.75 20.695312 C 4.242188 16.1875 2.085938 12.984375 1.597656 10.371094 C 1.066406 7.527344 2.546875 5.6875 4.035156 4.195312 C 5.265625 2.964844 6.433594 2.140625 8.324219 1.773438 C 9.714844 1.5 11.039062 2.210938 11.996094 2.914062 Z M 11.996094 2.914062 " />
+              </g>
+            </svg>
+
+
           </div>
         </div>
       </div>
@@ -191,20 +228,25 @@
         <div class="container">
           <div class="promotion__inner">
             <div class="promotion__text">
-              <h1 class="promotion__title title">
-                Today we have a promo offer!
-              </h1>
-              <div class="promotion__subtitle">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur soluta nemo maiores eligendi, sit
-                voluptatum consequatur voluptates, adipisci saepe non, ratione repudiandae ipsa harum ea porro iusto qui
-                repellendus aspernatur? <br>
-                Offer will end 30 June 2023.
+              <div class="promotion__text-box">
+
+                <h1 class="promotion__title title">
+                  Today we have a promo offer!
+                </h1>
+                <div class="promotion__subtitle">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur soluta nemo maiores eligendi,
+                  sit
+                  voluptatum consequatur voluptates, adipisci saepe non, ratione repudiandae ipsa harum ea porro iusto
+                  qui
+                  repellendus aspernatur? <br>
+                  Offer will end 30 June 2023.
+                </div>
               </div>
               <form class="promotion__form" action="#">
                 <h2 class="promotion__label" for="">Leave your contacts: </h2>
                 <input class="promotion__input" type="text" name="name" required placeholder="Your name">
                 <input class="promotion__input" type="tel" name="phone" required placeholder="Your phone">
-                <button class="promotion__btn" type="submit">Contact me!</button>
+                <button class="promotion__btn button" type="submit">Contact me!</button>
               </form>
             </div>
             <div class="promotion__timer">
@@ -251,7 +293,8 @@
             <h3 class="calc__physical-title calc__title">Choose your physical activity</h3>
             <div class="calc__physical">
               <div class="calc__choose-item" id="low" data-ratio="1.2">Low activity</div>
-              <div class="calc__choose-item calc__choose-item--active" id="small" data-ratio="1.375">Small activity</div>
+              <div class="calc__choose-item calc__choose-item--active" id="small" data-ratio="1.375">Small activity
+              </div>
               <div class="calc__choose-item" id="medium" data-ratio="1.55">Medium activity</div>
               <div class="calc__choose-item" id="high" data-ratio="1.725">High activity</div>
             </div>
@@ -279,17 +322,16 @@
               <input class="modal__input" required name="name" type="text">
               <label>Your name</label>
             </div>
-            <div class="modal__input-box">  
+            <div class="modal__input-box">
               <input class="modal__input" required name="phone" type="tel">
               <label>Your phone</label>
             </div>
-            <button class="modal__btn">Call me back</button>
+            <button class="modal__btn button">Call me back</button>
           </form>
         </div>
       </div>
-
-
     </div>
+
 
     <footer class="footer">
       <div class="container">
@@ -321,9 +363,39 @@
       </div>
     </footer>
 
+
+    <section class="footer-mobile">
+      <div class="container">
+        <div class="footer-mobile__inner">
+          <div class="footer-mobile__social">
+            <h2 class="footer-mobile__title">Our social links</h2>
+            <a href="#">
+              <i class="fa-brands fa-instagram"></i>
+              Instagram
+            </a>
+            <a href="#">
+              <i class="fa-brands fa-facebook"></i>
+              Facebook
+            </a>
+          </div>
+          <div class="footer-mobile__contact">
+            <h2 class="footer-mobile__title">Contact us</h2>
+            <a class="footer-mobile__contact-individuals" href="tel: +79284909532">
+              <i class="fa-solid fa-phone"></i>
+              +79284909532
+            </a>
+            <a class="footer-mobile__contact-entities" href="tel: +79284909532">
+              <i class="fa-solid fa-phone"></i>
+              +79284909532
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 
 
+  <script src="https://kit.fontawesome.com/adf7bbbd7d.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
   <script src="js/main.min.js"></script>
 </body>

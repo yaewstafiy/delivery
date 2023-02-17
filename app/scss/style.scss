@@ -70,17 +70,19 @@
     .search-block {
       display: flex;
       align-items: center;
+
+      &__input {
+        width: 100%;
+        color: #000;
+        padding: 0px 15px 0 45px;
+        height: 35px;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+        transition: all .3s;
+      }
     }
 
-    input {
-      width: 100%;
-      color: #000;
-      padding: 0px 15px 0 45px;
-      height: 35px;
-      border-radius: 10px;
-      border: none;
-      outline: none;
-    }
 
     svg {
       position: absolute;
@@ -92,6 +94,17 @@
       }
     }
   }
+}
+
+.contact {
+  svg {
+    display: none;
+  }
+
+  svg path {
+    fill: $accent-two;
+  }
+
 }
 
 
@@ -254,6 +267,11 @@
   &__title {
     margin-bottom: 15px;
   }
+
+  &__img {
+    border-radius: 10px;
+    overflow: hidden;
+  }
 }
 
 .menu {
@@ -386,7 +404,7 @@
 
 .calc {
   text-align: center;
-  margin: 50px 0;
+  margin: 100px 0;
   padding: 50px 0;
   background-color: $accent;
   color: $white;
@@ -454,7 +472,7 @@
     justify-content: center;
   }
 
-  
+
 
   &__total {
     padding-top: 20px;
@@ -614,6 +632,31 @@
     }
   }
 
+}
+
+.footer-mobile {
+  display: none;
+  background-color: $accent;
+  padding: 50px 0;
+
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+  }
+
+  &__social a,
+  &__contact a {
+    display: block;
+  }
+
+  &__contact {
+    text-align: right;
+  }
+
+  a {
+    margin-top: 15px;
+  }
 }
 
 
