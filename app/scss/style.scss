@@ -108,17 +108,17 @@
 }
 
 
-.search__input:focus+svg path {
-  fill: $white;
-  opacity: 0.7;
+.search-block__input:focus+svg path {
+  fill: $white !important;
+  opacity: 1;
 }
 
-.search__input:focus::placeholder {
+.search-block__input:focus::placeholder {
   color: $white;
   opacity: 0.75;
 }
 
-.search__input:focus {
+.search-block__input:focus {
   color: $white;
   background-color: $accent-two;
 }
@@ -181,6 +181,7 @@
 
   &__item {
     cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     transition: all .2s;
     position: relative;
 
@@ -435,6 +436,7 @@
   }
 
   &__choose-item {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     transition: all .3s;
     display: flex;
     justify-content: center;
