@@ -99,12 +99,13 @@
 .contact {
   svg {
     display: none;
-  }
+    margin-left: 10px;
+    cursor: pointer;
 
-  svg path {
-    fill: $accent-two;
+    path {
+      fill: $white;
+    }
   }
-
 }
 
 
@@ -315,7 +316,7 @@
     }
 
     &-total {
-      background: #ff54a6;
+      background: $accent-two;
       padding: 5px 20px;
       border-radius: 10px;
 

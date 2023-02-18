@@ -279,7 +279,7 @@
     }
     svg {
       display: flex;
-      margin-left: 10px;
+      
     }
   }
 
@@ -306,6 +306,16 @@
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
     gap: 15px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+
+    &__block {
+      width: 100%;
+
+      &:first-child {
+        grid-area: 1/1/1/4;
+      }
+    }
 
     &__block+&__block {
       margin-left: 0;

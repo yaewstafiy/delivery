@@ -175,7 +175,7 @@ window.addEventListener('DOMContentLoaded', () => {
     modalWindow.classList.add('show-modal');
     modalWindow.classList.add('been-opened'); // добавляет класс, символизирующий, что модальное окно уже было открыто 1 раз
     document.body.style.overflow = 'hidden';
-    // clearInterval(modalTimerId); // удаляется setTimeOut у появления модального окна
+    clearInterval(modalTimerId); // удаляется setTimeOut у появления модального окна
   }
 
   function openModalWithTimeOut(time) {
@@ -203,7 +203,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // const modalTimerId = setTimeout(openModal, 10_000); // открывает модальное окно по истечению 10 секунд (10.000 миллисекунд)
+  const modalTimerId = setTimeout(openModal, 30_000); // открывает модальное окно по истечению 30 секунд (30.000 миллисекунд)
 
   window.addEventListener('scroll', showModalByScroll);
 
@@ -483,9 +483,35 @@ window.addEventListener('DOMContentLoaded', () => {
   burgerButton.addEventListener('click', openNavModal);
 
   navModalList.addEventListener('click', (e) => {
-    if (e.target === navModalList || e.target.getAttribute('data-burger-close')) {
+    if (e.target === navModalList || e.target.getAttribute('data-burger-close') === '') {
       closeNavModal();
     }
   })
 
+  // Scroll
+
+  function scrollToPage(directionId) {
+    window.scrollTo({
+      top: (document.querySelector(`#${directionId}`).offsetTop - 82),
+      behavior: 'smooth'
+    });
+  }
+
+  document.querySelector('#delivery').addEventListener('click', (e) => {
+    e.preventDefault();
+    scrollToPage('promotion');
+    closeNavModal();
+  });
+
+  document.querySelector('#suggest').addEventListener('click', (e) => {
+    e.preventDefault();
+    scrollToPage('calculator');
+    closeNavModal();
+  });
+
+  document.querySelector('#menu-link').addEventListener('click', (e) => {
+    e.preventDefault();
+    scrollToPage('menu');
+    closeNavModal();
+  });
 });
