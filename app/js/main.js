@@ -491,7 +491,24 @@ window.addEventListener('DOMContentLoaded', () => {
   // Scroll
 
   const headerNavList = document.querySelectorAll('.header__nav-item a'),
-        headerNavModal = document.querySelectorAll('.nav-modal__list-item a')
+        headerNavModal = document.querySelectorAll('.nav-modal__list-item a');
+  
+  const pageObject = ['menu', 'promotion', 'calculator'];
+
+  // Для каждого элемента headerNavList я добавляю обработчик событий на скролл + на каждый элемент headerNavModal такого же индекса я добавляю тот же обработчик событий, но уже с функцией closeNavModal, которая закрывает бургер меню
+
+  headerNavList.forEach((item, i) => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      scrollToPage(pageObject[i]);
+    });
+
+    headerNavModal[i].addEventListener('click', (e) => {
+      e.preventDefault();
+      scrollToPage(pageObject[i]);
+      closeNavModal();
+    });
+  })
   
   function scrollToPage(directionId) {
     window.scrollTo({
@@ -499,28 +516,4 @@ window.addEventListener('DOMContentLoaded', () => {
       behavior: 'smooth'
     });
   }
-
-  [headerNavList[0], headerNavModal[0]].forEach(item => {
-    item.addEventListener('click', (e) => {
-      e.preventDefault();
-      scrollToPage('menu');
-      closeNavModal();
-    });
-  });
-
-  [headerNavList[1], headerNavModal[1]].forEach(item => {
-    item.addEventListener('click', (e) => {
-      e.preventDefault();
-      scrollToPage('promotion');
-      closeNavModal();
-    });
-  });
-
-  [headerNavList[2], headerNavModal[2]].forEach(item => {
-    item.addEventListener('click', (e) => {
-      e.preventDefault();
-      scrollToPage('calculator');
-      closeNavModal();
-    });
-  });
 });
