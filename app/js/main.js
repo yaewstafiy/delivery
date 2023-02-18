@@ -490,6 +490,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // Scroll
 
+  const headerNavList = document.querySelectorAll('.header__nav-item a'),
+        headerNavModal = document.querySelectorAll('.nav-modal__list-item a')
+  
   function scrollToPage(directionId) {
     window.scrollTo({
       top: (document.querySelector(`#${directionId}`).offsetTop - 82),
@@ -497,21 +500,27 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  document.querySelector('#delivery').addEventListener('click', (e) => {
-    e.preventDefault();
-    scrollToPage('promotion');
-    closeNavModal();
+  [headerNavList[0], headerNavModal[0]].forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      scrollToPage('menu');
+      closeNavModal();
+    });
   });
 
-  document.querySelector('#suggest').addEventListener('click', (e) => {
-    e.preventDefault();
-    scrollToPage('calculator');
-    closeNavModal();
+  [headerNavList[1], headerNavModal[1]].forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      scrollToPage('promotion');
+      closeNavModal();
+    });
   });
 
-  document.querySelector('#menu-link').addEventListener('click', (e) => {
-    e.preventDefault();
-    scrollToPage('menu');
-    closeNavModal();
+  [headerNavList[2], headerNavModal[2]].forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      scrollToPage('calculator');
+      closeNavModal();
+    });
   });
 });
