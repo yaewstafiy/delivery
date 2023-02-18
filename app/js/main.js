@@ -388,11 +388,37 @@ window.addEventListener('DOMContentLoaded', () => {
   // Calculator 
 
   const result = document.querySelector('.calc__total-result span');
-  let sex = 'male',
-    height,
-    weight,
-    age,
-    ratio = 1.375;
+  let sex, ratio, height, weight, age;
+
+  if (localStorage.getItem('sex')) {
+    sex = localStorage.getItem('sex');
+  } else {
+    sex = 'male';
+    localStorage.setItem('sex', 'male');
+  }
+  if (localStorage.getItem('ratio')) {
+    ratio = localStorage.getItem('ratio');
+  } else {
+    ratio = 1.55;
+    localStorage.setItem('ratio', 1.55);
+  }
+
+  function initLocalSettings(selector, activeClass) {
+    const elements = document.querySelectorAll(selector);
+    elements.forEach(elem => {
+      elem.classList.remove(activeClass);
+      if (elem.getAttribute('id') === localStorage.getItem('sex')) {
+        elem.classList.add(activeClass);
+      }
+      if (elem.getAttribute('data-ratio') === localStorage.getItem('ratio')) {
+        elem.classList.add(activeClass);
+      }
+    })
+  }
+
+  initLocalSettings('#gender div', 'calc__choose-item--active');
+  initLocalSettings('.calc__physical div', 'calc__choose-item--active');
+
 
   function calcTotal() {
     if (!sex || !height || !weight || !age || !ratio) {
@@ -407,15 +433,17 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function getStaticInformation(parentSelector, activeClass) {
-    const elements = document.querySelectorAll(`${parentSelector} div`);
+  function getStaticInformation(selector, activeClass) {
+    const elements = document.querySelectorAll(selector);
 
     elements.forEach(item => {
       item.addEventListener('click', (e) => {
         if (e.target.getAttribute('data-ratio')) {
           ratio = +e.target.getAttribute('data-ratio');
+          localStorage.setItem('ratio', +e.target.getAttribute('data-ratio'));
         } else {
           sex = e.target.getAttribute('id');
+          localStorage.setItem('sex', e.target.getAttribute('id'));
         }
 
         elements.forEach(elem => {
@@ -432,13 +460,22 @@ window.addEventListener('DOMContentLoaded', () => {
 
   }
 
-  getStaticInformation('#gender', 'calc__choose-item--active');
-  getStaticInformation('.calc__physical', 'calc__choose-item--active');
+  getStaticInformation('#gender div', 'calc__choose-item--active');
+  getStaticInformation('.calc__physical div', 'calc__choose-item--active');
 
   function getDynamicInformation(selector) {
     const input = document.querySelector(selector);
 
     input.addEventListener('input', () => {
+
+      if (input.value.match(/\D/g)) {
+        input.style.border = '3px solid red';
+      } else if (input.value == '') {
+        input.style.border = 'none';
+      } else {
+        input.style.border = '3px solid green';
+      }
+
       switch (input.getAttribute('id')) {
         case 'height':
           height = +input.value;
@@ -491,28 +528,28 @@ window.addEventListener('DOMContentLoaded', () => {
   // Scroll
 
   const headerNavList = document.querySelectorAll('.header__nav-item a'),
-        headerNavModal = document.querySelectorAll('.nav-modal__list-item a');
-  
-  const pageObject = ['menu', 'promotion', 'calculator'];
+    headerNavModal = document.querySelectorAll('.nav-modal__list-item a'),
+    dataScrollItems = document.querySelectorAll('[data-scroll]');
 
-  // Для каждого элемента headerNavList я добавляю обработчик событий на скролл + на каждый элемент headerNavModal такого же индекса я добавляю тот же обработчик событий, но уже с функцией closeNavModal, которая закрывает бургер меню
+  // Нахожу элементы в HTML структуре с дата атрибутом Scroll
+  // После чего для каждого элемента headerNavList и headerNavModal я добавляю обработчик событий на скролл с функцией closeNavModal, которая закрывает бургер меню
 
   headerNavList.forEach((item, i) => {
     item.addEventListener('click', (e) => {
       e.preventDefault();
-      scrollToPage(pageObject[i]);
+      scrollToPage(dataScrollItems[i]);
     });
 
     headerNavModal[i].addEventListener('click', (e) => {
       e.preventDefault();
-      scrollToPage(pageObject[i]);
+      scrollToPage(dataScrollItems[i]);
       closeNavModal();
     });
   })
-  
-  function scrollToPage(directionId) {
+
+  function scrollToPage(directionDataScroll) {
     window.scrollTo({
-      top: (document.querySelector(`#${directionId}`).offsetTop - 82),
+      top: directionDataScroll.offsetTop - 75,
       behavior: 'smooth'
     });
   }

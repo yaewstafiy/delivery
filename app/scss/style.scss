@@ -468,14 +468,16 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
+
+    input {
+      outline: none;
+    }
   }
 
   &__physical {
     display: flex;
     justify-content: center;
   }
-
-
 
   &__total {
     padding-top: 20px;
@@ -484,8 +486,6 @@
     display: flex;
     justify-content: center;
     gap: 40px;
-
-    &-title {}
 
     &-result span {
       font-weight: 700;
